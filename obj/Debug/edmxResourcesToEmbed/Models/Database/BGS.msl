@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BGSdbModelStoreContainer" CdmEntityContainer="BGSdbEntities">
+    <EntitySetMapping Name="TBL_Users">
+      <EntityTypeMapping TypeName="BGSdbModel.TBL_Users">
+        <MappingFragment StoreEntitySet="TBL_Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_UsersData">
+      <EntityTypeMapping TypeName="BGSdbModel.TBL_UsersData">
+        <MappingFragment StoreEntitySet="TBL_UsersData">
+          <ScalarProperty Name="dataJson" ColumnName="dataJson" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_Categories">
+      <EntityTypeMapping TypeName="BGSdbModel.TBL_Categories">
+        <MappingFragment StoreEntitySet="TBL_Categories">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

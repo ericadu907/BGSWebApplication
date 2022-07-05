@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .showError {
+        background-color: red;
+    }
+
+    .login-style-cus {
+        position: center;
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-top: 10%;
+    }
+
+    body {
+        background-image: url('../../Theme/Wallpaper/13900618_5291450.jpg');
+        width: 100%;
+        height: 600px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin: auto;
+        padding: 0;
+    }
+
+    .toast {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="card card-primary card-outline login-style-cus" style="border-top:3px solid #2c306f">
+    <div class="card-body">
+        <h3>To-do Website</h3>
+
+
+        <div class="card card-primary" id="LoginDiv">
+
+            <div class="card-header" style="background-color:#ffd048;">
+                <div class="">
+                    <div class="row">
+                        <button onclick="callLogin()" class="btn btn-primary waves-effect waves-classic " style="border:none; background-color:transparent;color:white;">Login</button>
+                        <button onclick="callRegister()" class="btn btn-primary waves-effect waves-classic" style="border: none; background-color: transparent; color: white;">Register</button>
+                    </div>
+                </div>
+            </div>
+            <form action="/Account/AuthenticateUser" id="LoginForm" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="Username">Username</label>
+                        <input type="text" class="form-control" id="Username" placeholder="Enter user name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" id="Password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary waves-effect waves-classic" style="color: #2c306f; background-color: #ffd048; border: none;">Login</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card card-primary" id="RegisterDiv" style="display:none; visibility:hidden">
+            <div class="card-header" style="background-color:#ffd048;">
+                <div class="">
+                    <div class="row">
+                        <button onclick="callLogin()" class="btn btn-primary waves-effect waves-classic " style="border:none; background-color:transparent;color:white;">Login</button>
+                        <button onclick="callRegister()" class="btn btn-primary waves-effect waves-classic" style="border: none; background-color: transparent; color: white;">Register</button>
+                    </div>
+                </div>
+            </div>
+            <form action="/Account/RegisterUser" id="RegisterForm" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="Username1">Username</label>
+                        <input type="text" class="form-control" id="Username1" placeholder="Enter user name">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Password1">Password</label>
+                            <input type="password" class="form-control" id="Password1" placeholder="Password">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Password2">Password</label>
+                            <input type="password" class="form-control" id="Password2" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary waves-effect waves-classic" style="color: #2c306f; background-color: #ffd048; border: none;">Register</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="toast" id="loginfail" data-bs-autohide="True">
+    <div class="toast-body">
+        <p>Username or Password wrong</p>
+    </div>
+</div>
+
+<div class="toast" id="registerfail" data-bs-autohide="True">
+    <div class="toast-body">
+        <p>Passwords not matching</p>
+        <p>enter 8 or more characters</p>
+    </div>
+</div>
+
+<div class="toast" id="emptyfail" data-bs-autohide="false">
+    <div class="toast-body">
+
+        <p>Enter credentials</p>
+    </div>
+</div>
+
+<div class="toast" id="unametaken" data-bs-autohide="false">
+    <div class="toast-body">
+
+        <p>Username not available</p>
+    </div>
+</div>
+
+
+
+
+
+
+@*jQuery*@
+<script src="~/Theme/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="~/Theme/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Theme/AdminLTE/plugins/toastr/toastr.min.js"></script>
+<script src="~/Theme/AdminLTE/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript">
+
+    function callLogin() {
+        var logindiv = document.getElementById("LoginDiv");
+        var registerdiv = document.getElementById("RegisterDiv");
+        document.getElementById('Username1').value = "";
+        document.getElementById('Password1').value = "";
+        document.getElementById('Password2').value = "";
+        if (logindiv.style.display === "none") {
+            logindiv.style.display = "block";
+            logindiv.style.visibility = "visible";
+
+            registerdiv.style.display = "none";
+            registerdiv.style.visibility = "hidden";
+        }
+    }
+
+    function callRegister() {
+
+        var registerdiv = document.getElementById("RegisterDiv");
+        var logindiv = document.getElementById("LoginDiv");
+        document.getElementById('Username').value = "";
+        document.getElementById('Password').value = "";
+
+        if (registerdiv.style.display === "none") {
+            registerdiv.style.display = "block";
+            registerdiv.style.visibility = "visible";
+
+            logindiv.style.visibility = "hidden";
+            logindiv.style.display = "none";
+        }
+    }
+
+
+
+
+
+    $("#RegisterForm").submit(function (e) {
+        e.preventDefault();
+        var un = document.getElementById('Username1');
+        var p1 = document.getElementById('Password1');
+        var p2 = document.getElementById('Password2');
+
+        var lnun = String(un.value.length);
+        var lnp1 = String(p1.value.length);
+        var lnp2 = String(p2.value.length);
+
+
+        if (un.value != "" && p1.value != "" && p1.value != "") {
+
+            if (lnun >= 8 && lnp1 >= 8 && lnp2 >= 8) {
+
+                var unCheck = true;
+                var p1Check = true;
+                var p2Check = true;
+                var passwordEqual = false;
+
+                if (un.value === "") {
+                    un.classList.add("showError");
+                    unCheck = false;
+                }
+
+                if (p1.value === "") {
+                    p1.classList.add("showError");
+                    p1Check = false;
+                }
+
+                if (p2.value === "") {
+                    p2.classList.add("showError");
+                    p2Check = false;
+                }
+
+                if (p1Check === true) {
+                    if (p1.value === p2.value) {
+                        passwordEqual = true;
+                    } else {
+                        $("#registerfail").toast("show");
+                    }
+                }
+
+                if (unCheck === true && passwordEqual === true) {
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: { Username1: un.value, Password1: p1.value },
+                        success: function (data) {
+                            if (data.success === true) {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            } else if (data.success === false) {
+                                $("#unametaken").toast("show");
+                            }
+                        },
+                        fail: function (xhr, textStatus, errorThrown) {
+                        }
+                    });
+                } else {
+                }
+            } else {
+                $("#registerfail").toast("show");
+            }
+        } else {
+            $("#emptyfail").toast("show");
+        }
+    });
+
+
+    $("#LoginForm").submit(function (e) {
+        e.preventDefault();
+        var unm = document.getElementById('Username');
+        var psswrd = document.getElementById('Password');
+
+
+        if (unm.value != "" && psswrd.value != "") {
+            var unmeCheck = true;
+            var psswrdCheck = true;
+
+            if (unm.value === "") {
+                unm.classList.add("showError");
+                unmeCheck = false;
+            }
+
+            if (psswrd.value === "") {
+                psswrd.classList.add("showError");
+                psswrdCheck = false;
+            }
+
+            if (unmeCheck === true && psswrdCheck === true) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: { pwrd: psswrd.value, usrn: unm.value },
+                    success: function (data) {
+                        if (data.success === true) {
+                            window.location.href = '@Url.Action("Index", "Home")';
+
+                        } else if (data.success === false) {
+                            $("#loginfail").toast("show");
+                        }
+                    },
+                    fail: function (xhr, textStatus, errorThrown) {
+                    }
+                });
+            } else {
+                $("#loginfail").toast("show");
+            }
+        } else {
+            $("#emptyfail").toast("show");
+        }
+    });
+
+
+
+</script>
